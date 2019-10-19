@@ -1,0 +1,7 @@
+<resources>
+    <string name="appName">Basket</string>
+    <string name="score">0</string>
+    <string name="tapToStart">Tap to Start</string>
+    <string name="basket">basket</string>
+    <string name="square">square</string>
+</resources>

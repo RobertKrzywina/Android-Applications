@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/score"
+            android:textSize="100sp"
+            android:id="@+id/score"
+            android:layout_gravity="center"
+            android:visibility="invisible"
+    />
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tapToStart"
+            android:textSize="60sp"
+            android:id="@+id/tapToStart"
+            android:layout_gravity="center"
+    />
+
+    <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/basket"
+            android:contentDescription="@string/basket"
+            android:id="@+id/basket"
+            android:layout_gravity="bottom|center"
+    />
+
+    <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/square"
+            android:contentDescription="@string/square"
+            android:id="@+id/square"
+            android:layout_gravity="top|center"
+    />
+
+    <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/black_square"
+            android:contentDescription="@string/square"
+            android:id="@+id/blackSquare"
+            android:layout_gravity="top|start"
+    />
+
+</FrameLayout>
