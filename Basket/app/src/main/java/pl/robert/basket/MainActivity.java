@@ -19,12 +19,12 @@ public class MainActivity extends AppCompatActivity {
     private TextView score;
     private TextView tapToStart;
 
-    private int frameWidth;
-    private int screenHeight;
+    static int frameWidth;
+    static int screenHeight;
 
     private int currentScore;
 
-    private boolean hasUserTapped = false;
+    static boolean hasUserTapped = false;
     private boolean hasUserStarted = false;
 
     private MovableElement basket;
@@ -51,22 +51,22 @@ public class MainActivity extends AppCompatActivity {
             setScreenHeight();
             setFrameWidth();
             setVisibilityOfTextViews();
-            runScheduler();
+            runThread();
         }
         return true;
     }
 
     private void checkIfUserTapped(MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
-            this.hasUserTapped = true;
+            hasUserTapped = true;
         } else if (event.getAction() == MotionEvent.ACTION_UP) {
-            this.hasUserTapped = false;
+            hasUserTapped = false;
         }
     }
 
     private void initializeMovableElements() {
-        this.basket = new MovableElement((ImageView) findViewById(R.id.basket));
-        this.square = new MovableElement((ImageView) findViewById(R.id.square));
+        this.basket = new Basket((ImageView) findViewById(R.id.basket));
+        this.square = new Fruit((ImageView) findViewById(R.id.square));
     }
 
     private void setScreenHeight() {
@@ -74,11 +74,11 @@ public class MainActivity extends AppCompatActivity {
         Display d = wm.getDefaultDisplay();
         Point p = new Point();
         d.getSize(p);
-        this.screenHeight = p.y;
+        screenHeight = p.y;
     }
 
     private void setFrameWidth() {
-        this.frameWidth = findViewById(R.id.main).getWidth();
+        frameWidth = findViewById(R.id.main).getWidth();
     }
 
     private void setVisibilityOfTextViews() {
@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
         this.score.setVisibility(View.VISIBLE);
     }
 
-    private void runScheduler() {
+    private void runThread() {
         final Handler handler = new Handler();
         new Timer().schedule(new TimerTask() {
             @Override
@@ -94,46 +94,26 @@ public class MainActivity extends AppCompatActivity {
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        changePosition();
+                        basket.animate(20);
+                        square.animate(12);
+                        checkHit();
                     }
                 });
             }
         }, 0, 20);
     }
 
-    private void changePosition() {
-        hitCheck();
-        square.increaseY(12);
-        if (square.getY() > screenHeight) {
-            square.setY(0);
-            square.setX((int) Math.floor(Math.random() * (frameWidth - square.getWidth())));
-        }
-        square.getElement().setX(square.getX());
-        square.getElement().setY(square.getY());
-
-        if (hasUserTapped) {
-            basket.decreaseX(20);
-        } else {
-            basket.increaseX(20);
-        }
-
-        if (basket.getX() < 0) {
-            basket.setX(0);
-        }
-
-        if (basket.getX() > frameWidth - basket.getWidth()) {
-            basket.setX(frameWidth - basket.getWidth());
-        }
-
-        basket.getElement().setX(basket.getX());
-    }
-
-    private void hitCheck() {
-        int diff = square.getX() - basket.getX();
-        if (square.getY() >= basket.getY() && diff > 0 && diff <= basket.getWidth()) {
+    /**
+     * Check if element has fallen into basket.
+     * If yes then increase current score and move element outside of screen.
+     */
+    private void checkHit() {
+        int difference = square.getX() - basket.getX();
+        boolean hasElementFallenIntoBasket =
+                square.getY() >= basket.getY() && difference > 0 && difference <= basket.getWidth();
+        if (hasElementFallenIntoBasket) {
             score.setText(String.valueOf(++currentScore));
-            square.increaseY(1000);
+            square.moveToBottom(screenHeight + 1);
         }
     }
 }
-

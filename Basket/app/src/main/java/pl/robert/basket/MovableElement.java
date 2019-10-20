@@ -2,7 +2,7 @@ package pl.robert.basket;
 
 import android.widget.ImageView;
 
-class MovableElement {
+abstract class MovableElement {
 
     private ImageView element;
     private int x;
@@ -24,20 +24,18 @@ class MovableElement {
         this.width = element.getWidth();
     }
 
-    void increaseX(int value) {
-        this.x += value;
+    abstract void animate(int speed);
+
+    void moveToRight(int speed) {
+        this.x += speed;
     }
 
-    void decreaseX(int value) {
-        this.x -= value;
+    void moveToLeft(int speed) {
+        this.x -= speed;
     }
 
-    void increaseY(int value) {
-        this.y += value;
-    }
-
-    void decreaseY(int value) {
-        this.y -= value;
+    void moveToBottom(int speed) {
+        this.y += speed;
     }
 
     ImageView getElement() {
@@ -56,8 +54,8 @@ class MovableElement {
         return y;
     }
 
-    void setY(int y) {
-        this.y = y;
+    void setYToZero() {
+        this.y = 0;
     }
 
     int getWidth() {
