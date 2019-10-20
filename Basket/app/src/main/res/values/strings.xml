@@ -3,5 +3,5 @@
     <string name="score">0</string>
     <string name="tapToStart">Tap to Start</string>
     <string name="basket">basket</string>
-    <string name="square">square</string>
+    <string name="fruit">fruit</string>
 </resources>

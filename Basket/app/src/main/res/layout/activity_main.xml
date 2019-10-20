@@ -33,15 +33,88 @@
             android:contentDescription="@string/basket"
             android:id="@+id/basket"
             android:layout_gravity="bottom|center"
+            android:visibility="invisible"
     />
 
     <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@drawable/square"
-            android:contentDescription="@string/square"
-            android:id="@+id/square"
-            android:layout_gravity="top|center"
+            android:src="@drawable/fruit1"
+            android:contentDescription="@string/fruit"
+            android:id="@+id/fruit1"
+            android:visibility="invisible"
+    />
+
+    <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/fruit2"
+            android:contentDescription="@string/fruit"
+            android:id="@+id/fruit2"
+            android:visibility="invisible"
+    />
+
+    <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/fruit3"
+            android:contentDescription="@string/fruit"
+            android:id="@+id/fruit3"
+            android:visibility="invisible"
+    />
+
+    <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/fruit4"
+            android:contentDescription="@string/fruit"
+            android:id="@+id/fruit4"
+            android:visibility="invisible"
+    />
+
+    <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/fruit5"
+            android:contentDescription="@string/fruit"
+            android:id="@+id/fruit5"
+            android:visibility="invisible"
+    />
+
+    <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/fruit6"
+            android:contentDescription="@string/fruit"
+            android:id="@+id/fruit6"
+            android:visibility="invisible"
+    />
+
+    <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/fruit7"
+            android:contentDescription="@string/fruit"
+            android:id="@+id/fruit7"
+            android:visibility="invisible"
+    />
+
+    <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/fruit8"
+            android:contentDescription="@string/fruit"
+            android:id="@+id/fruit8"
+            android:visibility="invisible"
+    />
+
+    <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/fruit9"
+            android:contentDescription="@string/fruit"
+            android:id="@+id/fruit9"
+            android:visibility="invisible"
     />
 
 </FrameLayout>
