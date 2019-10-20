@@ -1,34 +1,32 @@
 package pl.robert.basket;
 
-import android.graphics.Point;
+import android.view.View;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Display;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.WindowManager;
-import android.widget.ImageView;
+import android.graphics.Point;
 import android.widget.TextView;
+import android.widget.ImageView;
+import android.view.MotionEvent;
+import android.view.WindowManager;
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Timer;
+import java.util.Arrays;
 import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView score;
-    private TextView tapToStart;
-
     static int frameWidth;
     static int screenHeight;
+    static boolean hasUserTapped;
 
     private int currentScore;
+    private boolean hasUserStarted;
 
-    static boolean hasUserTapped = false;
-    private boolean hasUserStarted = false;
-
+    private TextView score;
+    private TextView tapToStart;
     private Basket basket;
     private List<Fruit> fruits;
 
@@ -37,9 +35,6 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        score = findViewById(R.id.score);
-        tapToStart = findViewById(R.id.tapToStart);
     }
 
     @Override
@@ -53,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
             configureFruits();
             setScreenHeight();
             setFrameWidth();
-            setVisibilityOfTextViews();
+            configureTextViews();
             runThread();
         }
         return true;
@@ -84,22 +79,22 @@ public class MainActivity extends AppCompatActivity {
         ImageView fruit8Img = findViewById(R.id.fruit8);
         ImageView fruit9Img = findViewById(R.id.fruit9);
 
-        setVisibilityForFruitsImages(
+        fruits = Arrays.asList(
+                new Fruit(fruit1Img), new Fruit(fruit2Img), new Fruit(fruit3Img),
+                new Fruit(fruit4Img), new Fruit(fruit5Img), new Fruit(fruit6Img),
+                new Fruit(fruit7Img), new Fruit(fruit8Img), new Fruit(fruit9Img)
+        );
+
+        makeFruitsImagesVisible(
                 Arrays.asList(
                         fruit1Img, fruit2Img, fruit3Img,
                         fruit4Img, fruit5Img, fruit6Img,
                         fruit7Img, fruit8Img, fruit9Img
                 )
         );
-
-        fruits = Arrays.asList(
-                new Fruit(fruit1Img), new Fruit(fruit2Img), new Fruit(fruit3Img),
-                new Fruit(fruit4Img), new Fruit(fruit5Img), new Fruit(fruit6Img),
-                new Fruit(fruit7Img), new Fruit(fruit8Img), new Fruit(fruit9Img)
-        );
     }
 
-    private void setVisibilityForFruitsImages(List<ImageView> fruitsImages) {
+    private void makeFruitsImagesVisible(List<ImageView> fruitsImages) {
         for (ImageView fruitImg : fruitsImages) {
             fruitImg.setVisibility(View.VISIBLE);
         }
@@ -117,9 +112,15 @@ public class MainActivity extends AppCompatActivity {
         frameWidth = findViewById(R.id.main).getWidth();
     }
 
-    private void setVisibilityOfTextViews() {
-        this.tapToStart.setVisibility(View.GONE);
-        this.score.setVisibility(View.VISIBLE);
+    private void configureTextViews() {
+        score = findViewById(R.id.score);
+        tapToStart = findViewById(R.id.tapToStart);
+        setTextViewsVisibility();
+    }
+
+    private void setTextViewsVisibility() {
+        tapToStart.setVisibility(View.GONE);
+        score.setVisibility(View.VISIBLE);
     }
 
     private void runThread() {
@@ -131,15 +132,19 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         basket.animate(20);
-                        for (MovableElement fruit : fruits) {
-                            int randomSpeed = (int) ((Math.random() * 10) + 10);
-                            fruit.animate(randomSpeed);
-                            checkHit(fruit);
-                        }
+                        generateFallenFruits();
                     }
                 });
             }
         }, 0, 20);
+    }
+
+    private void generateFallenFruits() {
+        for (MovableElement fruit : fruits) {
+            int randomSpeed = (int) ((Math.random() * 10) + 10);
+            fruit.animate(randomSpeed);
+            checkHit(fruit);
+        }
     }
 
     /**
