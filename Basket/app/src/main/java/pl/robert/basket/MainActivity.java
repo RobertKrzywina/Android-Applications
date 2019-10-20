@@ -7,7 +7,6 @@ import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,138 +19,120 @@ public class MainActivity extends AppCompatActivity {
     private TextView score;
     private TextView tapToStart;
 
-    private ImageView basket;
-    private ImageView square;
-    private ImageView ndSquare;
-
     private int frameWidth;
-    private int basketSize;
     private int screenHeight;
 
-    private int basketX;
-    private int basketY;
-    private int squareX;
-    private int squareY;
-    private int ndSquareX;
-    private int ndSquareY;
+    private int currentScore;
 
-    private int currentScore = 0;
+    private boolean hasUserTapped = false;
+    private boolean hasUserStarted = false;
 
-    private boolean action_flg = false;
-    private boolean start_flg = false;
-
-    private Timer timer = new Timer();
-    private Handler handler = new Handler();
+    private MovableElement basket;
+    private MovableElement square;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         score = findViewById(R.id.score);
         tapToStart = findViewById(R.id.tapToStart);
-        basket = findViewById(R.id.basket);
-        square = findViewById(R.id.square);
-        ndSquare = findViewById(R.id.blackSquare);
-
-        setScreenHeight();
-    }
-
-    private void setScreenHeight() {
-
-        WindowManager windowManager = getWindowManager();
-        Display display = windowManager.getDefaultDisplay();
-        Point point = new Point();
-        display.getSize(point);
-        this.screenHeight = point.y;
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
 
-        if (!start_flg) {
-
-            start_flg = true;
-
-            FrameLayout frame = findViewById(R.id.main);
-            frameWidth = frame.getWidth();
-
-            basketX = (int) basket.getX();
-            basketY = (int) basket.getY();
-
-            basketSize = basket.getWidth();
-
-            tapToStart.setVisibility(View.GONE);
-            score.setVisibility(View.VISIBLE);
-
-            timer.schedule(new TimerTask() {
-                @Override
-                public void run() {
-                    handler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            changePos();
-                        }
-                    });
-                }
-            }, 0, 20);
-
+        if (this.hasUserStarted) {
+            checkIfUserTapped(event);
         } else {
-
-            if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                action_flg = true;
-            } else if (event.getAction() == MotionEvent.ACTION_UP) {
-                action_flg = false;
-            }
+            this.hasUserStarted = true;
+            initializeMovableElements();
+            setScreenHeight();
+            setFrameWidth();
+            setVisibilityOfTextViews();
+            runScheduler();
         }
-
         return true;
     }
 
-    private void changePos() {
+    private void checkIfUserTapped(MotionEvent event) {
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            this.hasUserTapped = true;
+        } else if (event.getAction() == MotionEvent.ACTION_UP) {
+            this.hasUserTapped = false;
+        }
+    }
 
+    private void initializeMovableElements() {
+        this.basket = new MovableElement((ImageView) findViewById(R.id.basket));
+        this.square = new MovableElement((ImageView) findViewById(R.id.square));
+    }
+
+    private void setScreenHeight() {
+        WindowManager wm = getWindowManager();
+        Display d = wm.getDefaultDisplay();
+        Point p = new Point();
+        d.getSize(p);
+        this.screenHeight = p.y;
+    }
+
+    private void setFrameWidth() {
+        this.frameWidth = findViewById(R.id.main).getWidth();
+    }
+
+    private void setVisibilityOfTextViews() {
+        this.tapToStart.setVisibility(View.GONE);
+        this.score.setVisibility(View.VISIBLE);
+    }
+
+    private void runScheduler() {
+        final Handler handler = new Handler();
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        changePosition();
+                    }
+                });
+            }
+        }, 0, 20);
+    }
+
+    private void changePosition() {
         hitCheck();
-        squareY += 12;
-        if (squareY > screenHeight) {
-            squareY = 0;
-            squareX = (int) Math.floor(Math.random() * (frameWidth - square.getWidth()));
+        square.increaseY(12);
+        if (square.getY() > screenHeight) {
+            square.setY(0);
+            square.setX((int) Math.floor(Math.random() * (frameWidth - square.getWidth())));
         }
-        square.setX(squareX);
-        square.setY(squareY);
+        square.getElement().setX(square.getX());
+        square.getElement().setY(square.getY());
 
-
-        ndSquareY += 7;
-        if (ndSquareY > screenHeight) {
-            ndSquareY = 0;
-            ndSquareX = (int) Math.floor(Math.random() * (frameWidth - square.getWidth()));
-        }
-        ndSquare.setX(ndSquareX);
-        ndSquare.setY(ndSquareY);
-
-        if (action_flg) {
-            basketX -= 20;
+        if (hasUserTapped) {
+            basket.decreaseX(20);
         } else {
-            basketX += 20;
+            basket.increaseX(20);
         }
 
-        if (basketX < 0) {
-            basketX = 0;
+        if (basket.getX() < 0) {
+            basket.setX(0);
         }
 
-        if (basketX > frameWidth - basketSize) {
-            basketX = frameWidth - basketSize;
+        if (basket.getX() > frameWidth - basket.getWidth()) {
+            basket.setX(frameWidth - basket.getWidth());
         }
 
-        basket.setX(basketX);
+        basket.getElement().setX(basket.getX());
     }
 
     private void hitCheck() {
-
-        int diff = squareX - basketX;
-
-        if (squareY >= basketY && diff > 0 && diff <= basketSize) {
+        int diff = square.getX() - basket.getX();
+        if (square.getY() >= basket.getY() && diff > 0 && diff <= basket.getWidth()) {
             score.setText(String.valueOf(++currentScore));
-            squareY += 1000;
+            square.increaseY(1000);
         }
     }
 }
