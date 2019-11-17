@@ -1,0 +1,9 @@
+C:\Users\rkrzywina\source\repos\cHashTag\cHashTag\bin\Debug\cHashTag.exe.config
+C:\Users\rkrzywina\source\repos\cHashTag\cHashTag\bin\Debug\cHashTag.exe
+C:\Users\rkrzywina\source\repos\cHashTag\cHashTag\bin\Debug\cHashTag.pdb
+C:\Users\rkrzywina\source\repos\cHashTag\cHashTag\obj\Debug\cHashTag.Form1.resources
+C:\Users\rkrzywina\source\repos\cHashTag\cHashTag\obj\Debug\cHashTag.Properties.Resources.resources
+C:\Users\rkrzywina\source\repos\cHashTag\cHashTag\obj\Debug\cHashTag.csproj.GenerateResource.cache
+C:\Users\rkrzywina\source\repos\cHashTag\cHashTag\obj\Debug\cHashTag.exe
+C:\Users\rkrzywina\source\repos\cHashTag\cHashTag\obj\Debug\cHashTag.pdb
+C:\Users\rkrzywina\source\repos\cHashTag\cHashTag\obj\Debug\cHashTag.csprojAssemblyReference.cache
