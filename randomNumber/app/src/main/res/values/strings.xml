@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">randomNumber</string>
+    <string name="shakeYourPhone">Shake your phone to get a random number</string>
+    <string name="randomNumber">0</string>
+</resources>
