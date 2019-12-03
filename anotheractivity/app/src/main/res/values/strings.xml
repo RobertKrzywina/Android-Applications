@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">strange-calculator</string>
+    <string name="add">+</string>
+    <string name="minus">-</string>
+    <string name="multiply">*</string>
+    <string name="divide">/</string>
+    <string name="result">0</string>
+    <string name="previousActivityMsg">Back to the previous activity</string>
+</resources>
