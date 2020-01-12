@@ -37,6 +37,11 @@ class User {
         return pesel;
     }
 
+    public Sex getSex() {
+
+        return sex;
+    }
+
     @Override
     public String toString() {
 

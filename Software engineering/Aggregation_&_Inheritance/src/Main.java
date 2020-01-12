@@ -13,7 +13,7 @@ public class Main {
                 new Admin("Sara", "C", "22-103 Tokyo", new Pesel("01210302946"), LocalDate.of(2001, Month.JANUARY, 3), Sex.FEMALE))
                 .forEach(u -> {
                             u.show();
-                            System.out.println("Is pesel number valid? -> " + u.getPesel().isPeselNumberValid(u.getAge()));
+                            System.out.println("Is pesel number valid? -> " + u.getPesel().isPeselNumberValid(u.getSex(), u.getAge()));
                             if (u instanceof Worker) {
                                 System.out.print("Worker etat -> ");
                                 ((Worker) u).showEtat();

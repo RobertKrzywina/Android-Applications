@@ -22,9 +22,9 @@ class Pesel {
                 '}';
     }
 
-    public boolean isPeselNumberValid(int age) {
+    public boolean isPeselNumberValid(Sex sex, int age) {
 
-        return isLengthValid() && isSexValid() && isAgeValid(age);
+        return isLengthValid() && isSexValid(sex) && isAgeValid(age);
     }
 
     private boolean isLengthValid() {
@@ -32,10 +32,12 @@ class Pesel {
         return number.length() == 11;
     }
 
-    private boolean isSexValid() {
+    private boolean isSexValid(Sex givenSex) {
 
         int sexNumber = Character.getNumericValue(number.charAt(9));
-        return sexNumber >= 0 && sexNumber < 10;
+        boolean isDigitValid = sexNumber >= 0 && sexNumber < 10;
+        Sex actualSex = sexNumber % 2 == 0 ? Sex.FEMALE : Sex.MALE;
+        return isDigitValid && givenSex.equals(actualSex);
     }
 
     private boolean isAgeValid(int age) {
