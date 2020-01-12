@@ -1,2 +1,2 @@
-# Android-applications
-Repository contains android apps made for college
+# College apps
+Repository contains apps made for college
