@@ -1,0 +1,10 @@
+C:\Users\Robert\source\repos\MixedImages\MixedImages\bin\Debug\MixedImages.exe.config
+C:\Users\Robert\source\repos\MixedImages\MixedImages\bin\Debug\MixedImages.exe
+C:\Users\Robert\source\repos\MixedImages\MixedImages\bin\Debug\MixedImages.pdb
+C:\Users\Robert\source\repos\MixedImages\MixedImages\obj\Debug\MixedImages.csprojAssemblyReference.cache
+C:\Users\Robert\source\repos\MixedImages\MixedImages\obj\Debug\MixedImages.Form1.resources
+C:\Users\Robert\source\repos\MixedImages\MixedImages\obj\Debug\MixedImages.Properties.Resources.resources
+C:\Users\Robert\source\repos\MixedImages\MixedImages\obj\Debug\MixedImages.csproj.GenerateResource.cache
+C:\Users\Robert\source\repos\MixedImages\MixedImages\obj\Debug\MixedImages.csproj.CoreCompileInputs.cache
+C:\Users\Robert\source\repos\MixedImages\MixedImages\obj\Debug\MixedImages.exe
+C:\Users\Robert\source\repos\MixedImages\MixedImages\obj\Debug\MixedImages.pdb
