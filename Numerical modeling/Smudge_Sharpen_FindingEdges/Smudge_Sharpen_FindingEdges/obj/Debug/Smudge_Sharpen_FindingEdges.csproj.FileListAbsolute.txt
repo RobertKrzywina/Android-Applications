@@ -1,0 +1,10 @@
+C:\Users\Robert\source\repos\Smudge_Sharpen_FindingEdges\Smudge_Sharpen_FindingEdges\obj\Debug\Smudge_Sharpen_FindingEdges.csprojAssemblyReference.cache
+C:\Users\Robert\source\repos\Smudge_Sharpen_FindingEdges\Smudge_Sharpen_FindingEdges\obj\Debug\Smudge_Sharpen_FindingEdges.Form1.resources
+C:\Users\Robert\source\repos\Smudge_Sharpen_FindingEdges\Smudge_Sharpen_FindingEdges\obj\Debug\Smudge_Sharpen_FindingEdges.Properties.Resources.resources
+C:\Users\Robert\source\repos\Smudge_Sharpen_FindingEdges\Smudge_Sharpen_FindingEdges\obj\Debug\Smudge_Sharpen_FindingEdges.csproj.GenerateResource.cache
+C:\Users\Robert\source\repos\Smudge_Sharpen_FindingEdges\Smudge_Sharpen_FindingEdges\obj\Debug\Smudge_Sharpen_FindingEdges.csproj.CoreCompileInputs.cache
+C:\Users\Robert\source\repos\Smudge_Sharpen_FindingEdges\Smudge_Sharpen_FindingEdges\bin\Debug\Smudge_Sharpen_FindingEdges.exe.config
+C:\Users\Robert\source\repos\Smudge_Sharpen_FindingEdges\Smudge_Sharpen_FindingEdges\bin\Debug\Smudge_Sharpen_FindingEdges.exe
+C:\Users\Robert\source\repos\Smudge_Sharpen_FindingEdges\Smudge_Sharpen_FindingEdges\bin\Debug\Smudge_Sharpen_FindingEdges.pdb
+C:\Users\Robert\source\repos\Smudge_Sharpen_FindingEdges\Smudge_Sharpen_FindingEdges\obj\Debug\Smudge_Sharpen_FindingEdges.exe
+C:\Users\Robert\source\repos\Smudge_Sharpen_FindingEdges\Smudge_Sharpen_FindingEdges\obj\Debug\Smudge_Sharpen_FindingEdges.pdb
