@@ -1,0 +1,28 @@
+spring:
+
+  datasource:
+    url: jdbc:h2:~/crud
+    username: admin
+    password:
+    driverClassName: org.h2.Driver
+    initialization-mode: always
+
+  jpa:
+    hibernate:
+      ddlAuto: create
+    openInView: false
+
+  h2:
+    console:
+      enabled: true
+      path: /h2
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
