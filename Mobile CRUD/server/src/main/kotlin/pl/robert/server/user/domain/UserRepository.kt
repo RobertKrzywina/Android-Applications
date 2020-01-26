@@ -8,11 +8,11 @@ interface UserRepository : Repository<User, String> {
 
     fun save(user: User)
 
-    fun findByUuid(uuid: String): Optional<User>
+    fun findByEmail(email: String): Optional<User>
 
     fun findAll(): Iterable<User>
 
-    fun deleteByUuid(uuid: String)
+    fun deleteByEmail(email: String)
 
     fun deleteAll()
 }

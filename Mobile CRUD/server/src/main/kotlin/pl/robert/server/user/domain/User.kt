@@ -24,6 +24,9 @@ open class User {
     @Id
     var uuid = UUID.randomUUID().toString()
 
+    @Column(nullable = false, unique = true)
+    var email: String = ""
+
     @Column(nullable = false)
     var firstName: String = ""
 

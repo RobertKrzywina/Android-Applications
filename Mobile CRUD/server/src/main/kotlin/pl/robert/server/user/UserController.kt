@@ -25,16 +25,21 @@ import pl.robert.server.user.domain.dto.UpdateUserAgeDto
 class UserController @Autowired constructor(val service: UserService) {
 
     @PostMapping("/save")
-    fun save(@RequestBody dto: CreateUserDto) = ResponseEntity.ok(service.save(dto))
+    fun save(@RequestBody dto: CreateUserDto) {
+        ResponseEntity.ok(service.save(dto))
+    }
 
     @GetMapping
     fun getAll() = ResponseEntity.ok(service.getAll())
 
-    @PutMapping
-    fun updateAge(@RequestBody dto: UpdateUserAgeDto) = ResponseEntity.ok(service.updateAge(dto.uuid, dto.newAge))
+    @GetMapping("{email}")
+    fun getByEmail(@PathVariable(name = "email") email: String) = ResponseEntity.ok(service.getByEmail(email))
 
-    @DeleteMapping("{uuid}")
-    fun deleteByUuid(@PathVariable(name = "uuid") uuid: String) = ResponseEntity.ok(service.deleteByUuid(uuid))
+    @PutMapping
+    fun updateAge(@RequestBody dto: UpdateUserAgeDto) = ResponseEntity.ok(service.updateAge(dto.email, dto.newAge))
+
+    @DeleteMapping("{email}")
+    fun deleteByEmail(@PathVariable(name = "email") uuid: String) = ResponseEntity.ok(service.deleteByEmail(uuid))
 
     @DeleteMapping
     fun deleteAll() = ResponseEntity.ok(service.deleteAll())

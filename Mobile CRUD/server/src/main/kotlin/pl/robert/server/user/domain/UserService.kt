@@ -21,6 +21,7 @@ class UserService @Autowired constructor(val repository: UserRepository) {
     fun save(dtoCreate: CreateUserDto) {
         validator.checkInputData(dtoCreate)
         val user = User()
+        user.email = dtoCreate.email
         user.firstName = dtoCreate.firstName
         user.lastName = dtoCreate.lastName
         user.age = dtoCreate.age
@@ -31,6 +32,7 @@ class UserService @Autowired constructor(val repository: UserRepository) {
             .map {
                 UserDto(
                         it.uuid,
+                        it.email,
                         it.firstName,
                         it.lastName,
                         it.age
@@ -38,15 +40,19 @@ class UserService @Autowired constructor(val repository: UserRepository) {
             }
 
     @Transactional
-    fun updateAge(uuid: String, newAge: Int): User = repository
-            .findByUuid(uuid)
+    fun updateAge(email: String, newAge: Int): User = repository
+            .findByEmail(email)
             .map { user ->
                 user.age = newAge
                 user
             }
-            .orElseThrow { InvalidUserException(InvalidUserException.CAUSE.UUID_NOT_EXIST) }
+            .orElseThrow { InvalidUserException(InvalidUserException.CAUSE.EMAIL_NOT_EXIST) }
 
-    fun deleteByUuid(uuid: String) = repository.deleteByUuid(uuid)
+    fun getByEmail(email: String): User = repository
+            .findByEmail(email)
+            .orElseThrow { InvalidUserException(InvalidUserException.CAUSE.EMAIL_NOT_EXIST) }
+
+    fun deleteByEmail(email: String) = repository.deleteByEmail(email)
 
     fun deleteAll() = repository.deleteAll()
 }

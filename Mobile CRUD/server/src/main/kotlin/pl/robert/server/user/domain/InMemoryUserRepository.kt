@@ -15,18 +15,18 @@ class InMemoryUserRepository(var map: ConcurrentHashMap<String, User>) : UserRep
         map[user.uuid] = user
     }
 
-    override fun findByUuid(uuid: String): Optional<User> {
+    override fun findByEmail(email: String): Optional<User> {
         return map.entries
                 .stream()
-                .filter { map -> map.key == uuid }
+                .filter { map -> map.key == email }
                 .map { it.value }
                 .findFirst()
     }
 
     override fun findAll(): Iterable<User> = HashSet(map.values)
 
-    override fun deleteByUuid(uuid: String) {
-        map.remove(uuid)
+    override fun deleteByEmail(email: String) {
+        map.remove(email)
     }
 
     override fun deleteAll() {
