@@ -52,7 +52,11 @@ class UserService @Autowired constructor(val repository: UserRepository) {
             .findByEmail(email)
             .orElseThrow { InvalidUserException(InvalidUserException.CAUSE.EMAIL_NOT_EXIST) }
 
-    fun deleteByEmail(email: String) = repository.deleteByEmail(email)
+    @Transactional
+    fun deleteByEmail(email: String) {
+        val user = repository.findByEmail(email)
+        repository.deleteByEmail(user.get().email)
+    }
 
     fun deleteAll() = repository.deleteAll()
 }

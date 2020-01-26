@@ -3,10 +3,10 @@ package pl.robert.server.user.domain.exception
 import lombok.Getter
 import lombok.AllArgsConstructor
 
-import pl.robert.server.shared.GlobalExceptionHandler
+import java.lang.RuntimeException
 
 class InvalidUserException(cause: CAUSE) :
-        GlobalExceptionHandler(cause.message, null, false, false) {
+        RuntimeException(cause.message) {
 
     @Getter
     @AllArgsConstructor
