@@ -12,7 +12,7 @@ import kotlin.collections.HashSet
 class InMemoryUserRepository(var map: ConcurrentHashMap<String, User>) : UserRepository {
 
     override fun save(user: User) {
-        map[user.uuid] = user
+        map[user.email] = user
     }
 
     override fun findByEmail(email: String): Optional<User> {
