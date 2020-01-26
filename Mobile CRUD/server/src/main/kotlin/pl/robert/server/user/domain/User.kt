@@ -1,5 +1,6 @@
 package pl.robert.server.user.domain
 
+import io.swagger.annotations.ApiParam
 import lombok.Getter
 import lombok.Setter
 import lombok.AccessLevel
