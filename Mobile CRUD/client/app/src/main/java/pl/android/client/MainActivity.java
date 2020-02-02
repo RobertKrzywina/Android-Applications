@@ -1,8 +1,10 @@
 package pl.android.client;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.gson.Gson;
 import org.springframework.http.ResponseEntity;
@@ -31,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void getAll(View view) throws ExecutionException, InterruptedException {
-        ResponseEntity<UserDto[]> response = (ResponseEntity<UserDto[]>) new UserHttpTask(getApplication()).execute(UrlUtil.BASE).get();
+        ResponseEntity<UserDto[]> response = (ResponseEntity<UserDto[]>) new UserHttpTask(getApplication()).execute(UrlUtil.GET_ALL).get();
 
         if (response == null) {
             NotificationUtil.showErrorNotification(getApplication(), "Users do not exists!");
@@ -59,5 +61,25 @@ public class MainActivity extends AppCompatActivity {
 
     public void deleteAll(View view) {
 
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+
+        alertDialog.setTitle("Confirmation");
+        alertDialog.setMessage("Are you sure you want to delete all users?");
+
+        alertDialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                new UserHttpTask(getApplication()).execute(UrlUtil.DELETE_ALL);
+            }
+        });
+
+        alertDialog.setNegativeButton("No, I still need them!", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // do nothing =)
+            }
+        });
+
+        alertDialog.show();
     }
 }

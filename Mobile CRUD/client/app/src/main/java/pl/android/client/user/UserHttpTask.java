@@ -41,8 +41,11 @@ public class UserHttpTask extends AsyncTask<String, Void, Object> {
                 } catch (Exception e) {
                     return "BAD_REQUEST - " + UrlUtil.ADD_USER;
                 }
-            case UrlUtil.BASE:
+            case UrlUtil.GET_ALL:
                 return restTemplate.exchange(url, HttpMethod.GET, new HttpEntity<>(headers), UserDto[].class);
+            case UrlUtil.DELETE_ALL:
+                restTemplate.exchange(url, HttpMethod.DELETE, new HttpEntity<>(headers), Object.class);
+                return "SUCCESS - " + UrlUtil.DELETE_ALL;
         }
         return null;
     }
@@ -60,6 +63,8 @@ public class UserHttpTask extends AsyncTask<String, Void, Object> {
             NotificationUtil.showErrorNotification(activity, "All fields are required AND Email should be unique!");
         } else if (msg.contains("SUCCESS") && msg.contains(UrlUtil.ADD_USER)) {
             NotificationUtil.showSuccessNotification(activity, "New user has been added!");
+        } else if (msg.contains("SUCCESS") && msg.contains(UrlUtil.DELETE_ALL)) {
+            NotificationUtil.showSuccessNotification(activity, "All users has been deleted!");
         }
     }
 }

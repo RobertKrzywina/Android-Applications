@@ -65,6 +65,6 @@ class UserController @Autowired constructor(val service: UserService) {
         }
     }
 
-    @DeleteMapping
+    @DeleteMapping("/delete")
     fun deleteAll() = ResponseEntity.ok(service.deleteAll())
 }
