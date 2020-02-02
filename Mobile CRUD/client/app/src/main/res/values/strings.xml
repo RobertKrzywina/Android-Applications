@@ -7,4 +7,11 @@
     <string name="updateAge">UPDATE AGE</string>
     <string name="deleteByEmail">DELETE BY EMAIL</string>
     <string name="deleteAll">DELETE ALL</string>
+
+    <!-- AddUserActivity -->
+    <string name="addUser">Add user</string>
+    <string name="firstName">first name</string>
+    <string name="lastName">last name</string>
+    <string name="email">email@example.com</string>
+    <string name="age">age</string>
 </resources>

@@ -7,7 +7,10 @@ import android.widget.Toast;
 public final class NotificationUtil {
 
     public static void showErrorNotification(Application activity, String msg) {
-
         Toast.makeText(activity, Html.fromHtml("<font color=\"red\"><big><b>" + msg + "</b></big></font>"), Toast.LENGTH_SHORT).show();
+    }
+
+    public static void showSuccessNotification(Application activity, String msg) {
+        Toast.makeText(activity, Html.fromHtml("<font color=\"green\"><big><b>" + msg + "</b></big></font>"), Toast.LENGTH_SHORT).show();
     }
 }
