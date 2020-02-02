@@ -1,18 +1,20 @@
 package pl.android.client.user;
 
-import android.app.Application;
 import android.os.AsyncTask;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.web.client.RestTemplate;
-import pl.android.client.user.dto.CreateUserDto;
-import pl.android.client.user.dto.UpdateUserAgeDto;
+import android.app.Application;
+
+import pl.android.client.util.UrlUtil;
 import pl.android.client.user.dto.UserDto;
 import pl.android.client.util.NotificationUtil;
-import pl.android.client.util.UrlUtil;
+import pl.android.client.user.dto.CreateUserDto;
+import pl.android.client.user.dto.UpdateUserAgeDto;
+
+import org.springframework.http.MediaType;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpHeaders;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 
 public class UserHttpTask extends AsyncTask<String, Void, Object> {
 

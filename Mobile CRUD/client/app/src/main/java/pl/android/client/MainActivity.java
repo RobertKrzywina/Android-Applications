@@ -1,28 +1,28 @@
 package pl.android.client;
 
-import android.content.DialogInterface;
-import android.content.Intent;
+import java.util.List;
+import java.util.Arrays;
+import java.util.Objects;
+import java.util.concurrent.ExecutionException;
+
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent;
+
 import com.google.gson.Gson;
-import org.springframework.http.ResponseEntity;
+
+import pl.android.client.util.UrlUtil;
+import pl.android.client.user.dto.UserDto;
+import pl.android.client.user.UserHttpTask;
+import pl.android.client.util.NotificationUtil;
+import pl.android.client.activity.UsersActivity;
 import pl.android.client.activity.AddUserActivity;
 import pl.android.client.activity.UpdateUserAgeActivity;
-import pl.android.client.activity.UsersActivity;
-import pl.android.client.user.UserHttpTask;
-import pl.android.client.user.dto.UserDto;
-import pl.android.client.util.NotificationUtil;
-import pl.android.client.util.UrlUtil;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.concurrent.ExecutionException;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
+import org.springframework.http.ResponseEntity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,11 +33,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void navigateToAddUserActivity(View view) {
-        Intent intent = new Intent(getBaseContext(), AddUserActivity.class);
-        startActivity(intent);
+
+        startActivity(new Intent(getBaseContext(), AddUserActivity.class));
     }
 
     public void getAll(View view) throws ExecutionException, InterruptedException {
+
         ResponseEntity<UserDto[]> response = (ResponseEntity<UserDto[]>) new UserHttpTask(getApplication()).execute(UrlUtil.GET_ALL).get();
 
         if (response == null) {
@@ -52,18 +53,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void getByEmail(View view) {
-
-    }
-
     public void navigateToUpdateAgeActivity(View view) {
 
-        Intent intent = new Intent(getBaseContext(), UpdateUserAgeActivity.class);
-        startActivity(intent);
-    }
-
-    public void deleteByEmail(View view) {
-
+        startActivity(new Intent(getBaseContext(), UpdateUserAgeActivity.class));
     }
 
     public void deleteAll(View view) {
@@ -73,18 +65,10 @@ public class MainActivity extends AppCompatActivity {
         alertDialog.setTitle("Confirmation");
         alertDialog.setMessage("Are you sure you want to delete all users?");
 
-        alertDialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                new UserHttpTask(getApplication()).execute(UrlUtil.DELETE_ALL);
-            }
-        });
+        alertDialog.setPositiveButton("YES", (dialog, which) -> new UserHttpTask(getApplication()).execute(UrlUtil.DELETE_ALL));
 
-        alertDialog.setNegativeButton("No, I still need them!", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                // do nothing =)
-            }
+        alertDialog.setNegativeButton("No, I still need them!", (dialog, which) -> {
+            // do nothing =)
         });
 
         alertDialog.show();

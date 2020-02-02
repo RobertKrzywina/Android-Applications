@@ -1,20 +1,22 @@
 package pl.android.client.activity;
 
-import android.annotation.SuppressLint;
+import java.util.List;
+import java.util.Arrays;
+
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.ArrayAdapter;
+
+import pl.android.client.R;
+
+import com.google.gson.Gson;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import com.google.gson.Gson;
-import pl.android.client.R;
+
 import pl.android.client.user.dto.UserDto;
 import pl.android.client.util.NotificationUtil;
 
-import java.util.Arrays;
-import java.util.List;
-
-@SuppressLint("Registered")
 public class UsersActivity extends AppCompatActivity {
 
     private ListView listView;

@@ -1,6 +1,7 @@
 package pl.android.client.user.dto;
 
 import androidx.annotation.NonNull;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class UserDto {

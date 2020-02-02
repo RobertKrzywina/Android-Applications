@@ -1,18 +1,18 @@
 package pl.android.client.activity;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+
+import pl.android.client.R;
+import pl.android.client.util.UrlUtil;
+import pl.android.client.user.UserHttpTask;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import pl.android.client.R;
-import pl.android.client.user.UserHttpTask;
-import pl.android.client.util.UrlUtil;
 
 import java.util.concurrent.ExecutionException;
 
-@SuppressLint("Registered")
 public class AddUserActivity extends AppCompatActivity {
 
     @Override

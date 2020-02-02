@@ -1,12 +1,10 @@
 <resources>
     <string name="app_name">client</string>
     <string name="simpleCrud">SIMPLE CRUD</string>
-    <string name="add">ADD</string>
-    <string name="getAll">GET ALL</string>
-    <string name="getByEmail">GET BY EMAIL</string>
-    <string name="updateAge">UPDATE AGE</string>
-    <string name="deleteByEmail">DELETE BY EMAIL</string>
-    <string name="deleteAll">DELETE ALL</string>
+    <string name="create">CREATE</string>
+    <string name="read">READ</string>
+    <string name="update">UPDATE</string>
+    <string name="delete">DELETE</string>
 
     <!-- AddUserActivity -->
     <string name="addUser">Add user</string>

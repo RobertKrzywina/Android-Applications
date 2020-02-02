@@ -16,7 +16,7 @@ public class CreateUserDto {
     @JsonProperty("age")
     private String age;
 
-        public CreateUserDto(String email, String firstName, String lastName, String age) {
+    public CreateUserDto(String email, String firstName, String lastName, String age) {
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
