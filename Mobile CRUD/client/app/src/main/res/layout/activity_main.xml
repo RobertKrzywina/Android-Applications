@@ -73,7 +73,7 @@
             tools:layout_editor_absoluteY="16dp"
             tools:layout_editor_absoluteX="157dp"
             android:id="@+id/updateAgeBtn"
-            android:onClick="updateAge"
+            android:onClick="navigateToUpdateAgeActivity"
             android:background="#FCA130"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"

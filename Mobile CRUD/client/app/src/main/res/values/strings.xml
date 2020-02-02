@@ -14,4 +14,8 @@
     <string name="lastName">last name</string>
     <string name="email">email@example.com</string>
     <string name="age">age</string>
+
+    <!-- UpdateAgeLayout -->
+    <string name="usersEmail">users email</string>
+    <string name="newAge">new age</string>
 </resources>

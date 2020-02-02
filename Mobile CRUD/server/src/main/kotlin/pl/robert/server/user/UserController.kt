@@ -47,7 +47,7 @@ class UserController @Autowired constructor(val service: UserService) {
         }
     }
 
-    @PutMapping
+    @PutMapping("/update-age")
     fun updateAge(@RequestBody dto: UpdateUserAgeDto) {
         try {
             ResponseEntity.ok(service.updateAge(dto.email, dto.newAge))

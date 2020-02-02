@@ -28,6 +28,9 @@
         <activity android:name=".activity.AddUserActivity">
 
         </activity>
+        <activity android:name=".activity.UpdateUserAgeActivity">
+
+        </activity>
     </application>
 
 </manifest>

@@ -9,6 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 import pl.android.client.user.dto.CreateUserDto;
+import pl.android.client.user.dto.UpdateUserAgeDto;
 import pl.android.client.user.dto.UserDto;
 import pl.android.client.util.NotificationUtil;
 import pl.android.client.util.UrlUtil;
@@ -43,6 +44,14 @@ public class UserHttpTask extends AsyncTask<String, Void, Object> {
                 }
             case UrlUtil.GET_ALL:
                 return restTemplate.exchange(url, HttpMethod.GET, new HttpEntity<>(headers), UserDto[].class);
+            case UrlUtil.UPDATE_AGE_BY_EMAIL:
+                try {
+                    UpdateUserAgeDto dto = new UpdateUserAgeDto(uri[1], uri[2]);
+                    restTemplate.exchange(url, HttpMethod.PUT, new HttpEntity<>(dto, headers), Object.class);
+                    return "SUCCESS - " + UrlUtil.UPDATE_AGE_BY_EMAIL;
+                } catch (Exception e) {
+                    return "BAD_REQUEST - " + UrlUtil.UPDATE_AGE_BY_EMAIL;
+                }
             case UrlUtil.DELETE_ALL:
                 restTemplate.exchange(url, HttpMethod.DELETE, new HttpEntity<>(headers), Object.class);
                 return "SUCCESS - " + UrlUtil.DELETE_ALL;
@@ -65,6 +74,10 @@ public class UserHttpTask extends AsyncTask<String, Void, Object> {
             NotificationUtil.showSuccessNotification(activity, "New user has been added!");
         } else if (msg.contains("SUCCESS") && msg.contains(UrlUtil.DELETE_ALL)) {
             NotificationUtil.showSuccessNotification(activity, "All users has been deleted!");
+        } else if (msg.contains("BAD_REQUEST") && msg.contains(UrlUtil.UPDATE_AGE_BY_EMAIL)) {
+            NotificationUtil.showErrorNotification(activity, "Email and new age is required OR email do not exists!");
+        } else if (msg.contains("SUCCESS") && msg.contains(UrlUtil.UPDATE_AGE_BY_EMAIL)) {
+            NotificationUtil.showSuccessNotification(activity, "Update went successfully!");
         }
     }
 }

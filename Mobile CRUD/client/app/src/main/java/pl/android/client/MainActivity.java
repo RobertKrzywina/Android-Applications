@@ -3,12 +3,17 @@ package pl.android.client;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.gson.Gson;
 import org.springframework.http.ResponseEntity;
 import pl.android.client.activity.AddUserActivity;
+import pl.android.client.activity.UpdateUserAgeActivity;
 import pl.android.client.activity.UsersActivity;
 import pl.android.client.user.UserHttpTask;
 import pl.android.client.user.dto.UserDto;
@@ -51,8 +56,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void updateAge(View view) {
+    public void navigateToUpdateAgeActivity(View view) {
 
+        Intent intent = new Intent(getBaseContext(), UpdateUserAgeActivity.class);
+        startActivity(intent);
     }
 
     public void deleteByEmail(View view) {
